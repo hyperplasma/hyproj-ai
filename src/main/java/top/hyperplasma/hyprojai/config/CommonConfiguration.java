@@ -9,9 +9,18 @@ import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import top.hyperplasma.hyprojai.constants.SystemConstants;
 
 @Configuration
 public class CommonConfiguration {
+
+    @Bean
+    public ChatMemory chatMemory(ChatMemoryRepository repository) {
+        return MessageWindowChatMemory.builder()
+                .chatMemoryRepository(repository)
+                .maxMessages(10)
+                .build();
+    }
 
     @Bean
     public ChatClient chatClient(OpenAiChatModel model, ChatMemory chatMemory) {
@@ -25,10 +34,13 @@ public class CommonConfiguration {
     }
 
     @Bean
-    public ChatMemory chatMemory(ChatMemoryRepository repository) {
-        return MessageWindowChatMemory.builder()
-                .chatMemoryRepository(repository)
-                .maxMessages(10)
+    public ChatClient gameChatClient(OpenAiChatModel model, ChatMemory chatMemory) {
+        return ChatClient.builder(model)
+                .defaultSystem(SystemConstants.TERESA_GAME_SYSTEM_PROMPT)
+                .defaultAdvisors(
+                        new SimpleLoggerAdvisor(),
+                        MessageChatMemoryAdvisor.builder(chatMemory).build()
+                )
                 .build();
     }
 }
