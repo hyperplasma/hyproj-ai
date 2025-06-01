@@ -11,14 +11,20 @@ spring:
       base-url: https://api.gptgod.online/
       chat:
         options:
+          # 请使用支持tool calling的模型
           model: gpt-4o-mini
           temperature: 0.7
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/hyprojai?serverTimezone=Asia/Shanghai&useSSL=false&useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: 1234
+    url: jdbc:sqlite:db/hyproj-ai.sqlite
+    driver-class-name: org.sqlite.JDBC
+    username:
+    password:
 logging:
   level:
     org.springframework.ai: debug
     top.hyperplasma.hyprojai: debug
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: top.hyperplasma.hyprojai.entity.po

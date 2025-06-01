@@ -1,5 +1,7 @@
 package top.hyperplasma.hyprojai.entity.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,15 +16,16 @@ import java.io.Serializable;
 public class CourseReservation implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
-    private Long courseId; // Foreign key to Course
+    private String course;
 
-    private String studentName; // Name of the student making the reservation
+    private String studentName;
 
-    private String reservationDate; // Date of the reservation
+    private String contactInfo;
 
-    private String status; // e.g., "reserved", "cancelled", "completed"
+    private String school;
 
-    private String notes; // Additional notes or comments about the reservation
+    private String remark;  // 备注
 }

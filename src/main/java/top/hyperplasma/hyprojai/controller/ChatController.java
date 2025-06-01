@@ -6,6 +6,7 @@ import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import top.hyperplasma.hyprojai.constants.ServiceType;
+import top.hyperplasma.hyprojai.entity.dto.UserPromptDTO;
 import top.hyperplasma.hyprojai.repository.ChatHistoryRepository;
 import top.hyperplasma.hyprojai.service.IChatService;
 
@@ -22,16 +23,18 @@ public class ChatController {
 
     // 新建任意类型会话时，生成会话ID并返回
     @GetMapping("/connect")
-    public String connect() {
+    public String connect(String type) {
         // 生成会话ID
         String chatId = chatService.generateChatId();
         // 保存会话ID
-        chatHistoryRepository.save(ServiceType.CHAT, chatId);
+        chatHistoryRepository.save(type, chatId);
         return chatId;
     }
 
-    @RequestMapping(value = "/chat", produces = "text/html;charset=utf-8")
-    public Flux<String> chat(String prompt, String chatId) {
+    @PostMapping(value = "/chat", produces = "text/html;charset=utf-8")
+    public Flux<String> chat(@RequestBody UserPromptDTO userPromptDTO) {
+        String prompt = userPromptDTO.getPrompt();
+        String chatId = userPromptDTO.getChatId();
         // Depicted - 保存会话ID
         // chatHistoryRepository.save(ServiceType.CHAT, chatId);
         // 请求模型

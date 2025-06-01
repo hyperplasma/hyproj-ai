@@ -1,5 +1,7 @@
 package top.hyperplasma.hyprojai.entity.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,21 +16,16 @@ import java.io.Serializable;
 public class Course implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
-    private String name;
+    private String name;    // 课程名称
 
-    private String description;
+    private Integer edu;    // 学历要求
 
-    private String teacherName;
+    private String type;    // 课程类型，匹配学生兴趣
 
-    private String schoolName;
+    private Integer price;   // 课程价格
 
-    private String courseCode;
-
-    private String semester;
-
-    private Integer credits;
-
-    private String schedule; // e.g., "Mon 10:00-12:00, Wed 10:00-12:00"
+    private Integer duration; // 课程时长，单位为天
 }

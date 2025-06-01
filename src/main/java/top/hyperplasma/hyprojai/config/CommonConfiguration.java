@@ -10,6 +10,7 @@ import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import top.hyperplasma.hyprojai.constants.SystemConstants;
+import top.hyperplasma.hyprojai.tools.CourseTools;
 
 @Configuration
 public class CommonConfiguration {
@@ -34,13 +35,25 @@ public class CommonConfiguration {
     }
 
     @Bean
-    public ChatClient gameChatClient(OpenAiChatModel model, ChatMemory chatMemory) {
+    public ChatClient gameChatClient(OpenAiChatModel model, ChatMemory gameChatMemory) {
         return ChatClient.builder(model)
                 .defaultSystem(SystemConstants.TERESA_GAME_SYSTEM_PROMPT)
                 .defaultAdvisors(
                         new SimpleLoggerAdvisor(),
-                        MessageChatMemoryAdvisor.builder(chatMemory).build()
+                        MessageChatMemoryAdvisor.builder(gameChatMemory).build()
                 )
+                .build();
+    }
+
+    @Bean
+    public ChatClient serviceChatClient(OpenAiChatModel model, ChatMemory serviceChatMemory, CourseTools courseTools) {
+        return ChatClient.builder(model)
+                .defaultSystem(SystemConstants.HYPLUS_COURSE_SERVICE_SYSTEM_PROMPT)
+                .defaultAdvisors(
+                        new SimpleLoggerAdvisor(),
+                        MessageChatMemoryAdvisor.builder(serviceChatMemory).build()
+                )
+                .defaultTools(courseTools)
                 .build();
     }
 }

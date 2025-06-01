@@ -1,4 +1,7 @@
 package top.hyperplasma.hyprojai.service;
 
-public interface ICourseService {
+import com.baomidou.mybatisplus.extension.service.IService;
+import top.hyperplasma.hyprojai.entity.po.Course;
+
+public interface ICourseService extends IService<Course> {
 }
