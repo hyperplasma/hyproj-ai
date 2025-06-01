@@ -1,4 +1,4 @@
-package top.hyperplasma.hyprojai.entity;
+package top.hyperplasma.hyprojai.entity.vo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

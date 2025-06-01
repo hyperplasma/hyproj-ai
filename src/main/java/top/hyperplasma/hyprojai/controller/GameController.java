@@ -14,6 +14,12 @@ public class GameController {
 
     private final ChatClient gameChatClient;
 
+    /**
+     * Teresa游戏
+     * @param prompt 用户输入指令
+     * @param chatId 会话ID，由前端随机生成
+     * @return 游戏响应内容
+     */
     @RequestMapping(value = "/game", produces = "text/html;charset=utf-8")
     public Flux<String> chat(String prompt, String chatId) {
         // 请求模型
