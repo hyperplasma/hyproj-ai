@@ -7,15 +7,17 @@ spring:
 #      chat:
 #        model: deepseek-r1:7b
     openai:
-      api-key: ${OPENAI_API_KEY}
-      base-url: https://api.gptgod.online/
+#      api-key: ${OPENAI_API_KEY}
+      api-key: ${TONGYI_API_KEY}  # For Tool Calling
+#      base-url: https://api.gptgod.online/
+      base-url: https://dashscope.aliyuncs.com/compatible-mode    # For Tool Calling
       chat:
         options:
-          # 请使用支持tool calling的模型
-          model: gpt-4o-mini
+          # model: gpt-4o-mini
+          model: qwen-max-latest    # For Tool Calling
           temperature: 0.7
   datasource:
-    url: jdbc:sqlite:db/hyproj-ai.sqlite
+    url: jdbc:sqlite:hyproj-ai.sqlite
     driver-class-name: org.sqlite.JDBC
     username:
     password:

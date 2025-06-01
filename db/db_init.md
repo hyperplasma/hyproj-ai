@@ -1,11 +1,11 @@
 Choose whatever database to store the Hyplus Service data.
 
-For convenience, you can manually create a SQLite database file in this `db` directory: `db/hyproj-ai.sqlite` .
+For convenience, you can manually create a SQLite database file: `hyproj-ai.sqlite` .
 
 Then execute the following script in the SQLite console:
 
 ```sqlite
--- Initialization script for SQLite database: db/hyproj-ai.sqlite
+-- Initialization script for SQLite database: hyproj-ai.sqlite
 
 CREATE TABLE IF NOT EXISTS course (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS course (
     edu INTEGER,                -- 学历要求
     type TEXT,                  -- 课程类型，匹配学生兴趣
     price INTEGER,              -- 课程价格
-    duration INTEGER            -- 课程时长，单位为天
+    duration INTEGER,            -- 课程时长，单位为天
+    description TEXT             -- 课程描述
 );
 
 CREATE TABLE IF NOT EXISTS course_reservation (
@@ -35,27 +36,22 @@ CREATE TABLE IF NOT EXISTS school (
     description TEXT            -- 描述
 );
 
-INSERT INTO course (name, edu, type, price, duration) VALUES
-('Java 基础课程', 1, '编程', 500, 30),
-('Python 数据分析', 2, '数据科学', 800, 45),
-('机器学习入门', 3, '人工智能', 1200, 60),
-('Web 开发入门', 1, '编程', 400, 25),
-('数据库设计', 2, '数据库', 700, 40),
-('算法与数据结构', 3, '编程', 1000, 50),
-('前端开发', 1, '编程', 600, 35),
-('后端开发', 2, '编程', 900, 50),
-('大数据分析', 3, '数据科学', 1500, 70),
-('人工智能高级课程', 3, '人工智能', 2000, 90),
-('网络安全基础', 2, '安全', 800, 40),
-('云计算入门', 2, '云计算', 1000, 50),
-('区块链技术', 3, '区块链', 1800, 80),
-('C++ 高级编程', 3, '编程', 1200, 60),
-('操作系统原理', 2, '系统', 700, 45),
-('计算机网络', 2, '网络', 600, 40),
-('软件工程', 2, '工程', 800, 50),
-('数据挖掘', 3, '数据科学', 1500, 70),
-('深度学习', 3, '人工智能', 2000, 90),
-('自然语言处理', 3, '人工智能', 1800, 80);
+INSERT INTO course (name, type, edu, duration, price, description) VALUES
+('Python网络爬虫实战', '编程', 2, 30, 299, '从零开始学习网络爬虫，掌握数据采集技术'),
+('Java企业级开发', '编程', 4, 60, 599, '企业级应用开发，包含Spring全家桶实战'),
+('UI设计入门到精通', '设计', 2, 45, 399, '掌握UI设计基础，快速上手界面设计'),
+('短视频内容创作', '自媒体', 1, 20, 199, '短视频策划、拍摄与剪辑技巧'),
+('数据结构与算法进阶', '编程', 4, 50, 499, '计算机核心课程，着重算法分析与设计'),
+('品牌视觉设计', '设计', 3, 40, 449, '品牌形象设计，包含VI系统设计实践'),
+('新媒体运营实战', '自媒体', 3, 35, 349, '全方位新媒体运营技能培训'),
+('人工智能基础', '编程', 5, 55, 699, '机器学习和深度学习核心概念与实践'),
+('3D建模基础', '设计', 2, 48, 479, '3D模型制作与渲染技术教程'),
+('直播带货技巧', '自媒体', 0, 15, 149, '直播技巧与带货实战指南'),
+('区块链开发', '编程', 4, 45, 599, '区块链应用开发与智能合约编程'),
+('产品包装设计', '设计', 3, 38, 429, '商业产品包装设计与制作'),
+('抖音短视频运营', '自媒体', 2, 25, 249, '抖音平台运营与内容创作策略'),
+('网络安全基础', '其他', 4, 40, 499, '网络安全原理与防护技术实践'),
+('项目管理PMP', '其他', 4, 50, 599, '专业项目管理认证课程');
 
 INSERT INTO course_reservation (course, student_name, contact_info, school, remark) VALUES
 ('Java 基础课程', '张三', '123456789', '清华大学', '无'),

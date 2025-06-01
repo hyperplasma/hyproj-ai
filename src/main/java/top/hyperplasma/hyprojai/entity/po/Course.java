@@ -28,4 +28,6 @@ public class Course implements Serializable {
     private Integer price;   // 课程价格
 
     private Integer duration; // 课程时长，单位为天
+
+    private String description; // 课程描述
 }
