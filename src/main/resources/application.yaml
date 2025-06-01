@@ -8,15 +8,21 @@ spring:
 #        model: deepseek-r1:7b
     openai:
 #      api-key: ${OPENAI_API_KEY}
-      api-key: ${TONGYI_API_KEY}  # For Tool Calling
+      api-key: ${TONGYI_API_KEY}  # Qwen model for Tool Calling
 #      base-url: https://api.gptgod.online/
-      base-url: https://dashscope.aliyuncs.com/compatible-mode    # For Tool Calling
+      base-url: https://dashscope.aliyuncs.com/compatible-mode    # Qwen model For Tool Calling
       chat:
         options:
-          # model: gpt-4o-mini
-          model: qwen-max-latest    # For Tool Calling
+#          model: gpt-4o-mini
+          model: qwen-max-latest    # Qwen model For Tool Calling
           temperature: 0.7
+      embedding:
+        options:
+#          model: text-embedding-ada-002
+          model: text-embedding-v3 # Qwen model
+          dimensions: 1024
   datasource:
+    # 使用SQLite数据库
     url: jdbc:sqlite:hyproj-ai.sqlite
     driver-class-name: org.sqlite.JDBC
     username:

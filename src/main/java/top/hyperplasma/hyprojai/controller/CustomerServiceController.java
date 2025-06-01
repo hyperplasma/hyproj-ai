@@ -19,7 +19,7 @@ public class CustomerServiceController {
     // private final ChatHistoryRepository chatHistoryRepository;
 
     @RequestMapping(value = "/service", produces = "text/html;charset=utf-8")
-    public String chat(@RequestBody UserPromptDTO userPromptDTO) {
+    public Flux<String> chat(@RequestBody UserPromptDTO userPromptDTO) {
         String prompt = userPromptDTO.getPrompt();
         String chatId = userPromptDTO.getChatId();
         // Depicted - 保存会话ID
@@ -28,7 +28,7 @@ public class CustomerServiceController {
         return serviceChatClient.prompt()
                 .user(prompt)
                 .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, chatId))
-                .call()
+                .stream()
                 .content();
     }
 }

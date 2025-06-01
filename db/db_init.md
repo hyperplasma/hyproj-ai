@@ -1,6 +1,6 @@
 Choose whatever database to store the Hyplus Service data.
 
-For convenience, you can manually create a SQLite database file: `hyproj-ai.sqlite` .
+For convenience, here we manually create a SQLite database file `hyproj-ai.sqlite` in the root directory of the project.
 
 Then execute the following script in the SQLite console:
 

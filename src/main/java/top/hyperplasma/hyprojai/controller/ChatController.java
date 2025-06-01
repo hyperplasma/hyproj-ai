@@ -5,7 +5,6 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
-import top.hyperplasma.hyprojai.constants.ServiceType;
 import top.hyperplasma.hyprojai.entity.dto.UserPromptDTO;
 import top.hyperplasma.hyprojai.repository.ChatHistoryRepository;
 import top.hyperplasma.hyprojai.service.IChatService;
