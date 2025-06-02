@@ -1,26 +1,26 @@
 spring:
   application:
     name: hyproj-ai
-  ai: # Choose your model provider:
+  ai:
 #    ollama:
 #      base-url: http://localhost:11434
 #      chat:
 #        model: deepseek-r1:7b
     openai:
-#      api-key: ${OPENAI_API_KEY}
-      api-key: ${TONGYI_API_KEY}  # Qwen model for Tool Calling
-#      base-url: https://api.gptgod.online/
-      base-url: https://dashscope.aliyuncs.com/compatible-mode    # Qwen model For Tool Calling
+      api-key: ${OPENAI_API_KEY}
+#      api-key: ${TONGYI_API_KEY}  # Qwen model for Tool Calling
+      base-url: https://api.gptgod.online/
+#      base-url: https://dashscope.aliyuncs.com/compatible-mode    # Qwen model For Tool Calling
       chat:
         options:
-#          model: gpt-4o-mini
-          model: qwen-max-latest    # Qwen model For Tool Calling
+          model: gpt-4o-mini
+#          model: qwen-max-latest    # Qwen model For Tool Calling
           temperature: 0.7
-      embedding:
-        options:
+#      embedding:
+#        options:
 #          model: text-embedding-ada-002
-          model: text-embedding-v3 # Qwen model 二选一
-          dimensions: 1024
+#          model: text-embedding-v3 # Qwen model 二选一
+#          dimensions: 1024
   datasource:
     # 使用SQLite数据库
     url: jdbc:sqlite:hyproj-ai.sqlite
