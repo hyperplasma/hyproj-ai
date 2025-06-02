@@ -1,7 +1,7 @@
 spring:
   application:
     name: hyproj-ai
-  ai:
+  ai: # Choose your model provider:
 #    ollama:
 #      base-url: http://localhost:11434
 #      chat:
@@ -16,11 +16,11 @@ spring:
           model: gpt-4o-mini
 #          model: qwen-max-latest    # Qwen model For Tool Calling
           temperature: 0.7
-#      embedding:
-#        options:
-#          model: text-embedding-ada-002
+      embedding:
+        options:
+          model: text-embedding-ada-002
 #          model: text-embedding-v3 # Qwen model 二选一
-#          dimensions: 1024
+          dimensions: 1024
   datasource:
     # 使用SQLite数据库
     url: jdbc:sqlite:hyproj-ai.sqlite
