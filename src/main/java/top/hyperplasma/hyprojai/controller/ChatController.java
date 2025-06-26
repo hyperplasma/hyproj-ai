@@ -27,8 +27,8 @@ public class ChatController {
     private final ChatHistoryRepository chatHistoryRepository;
 
     // 新建任意类型会话时，生成会话ID并返回
-    @GetMapping("/connect")
-    public String connect(String type) {
+    @GetMapping("/connect/{type}")
+    public String connect(@PathVariable String type) {
         // 生成会话ID
         String chatId = chatService.generateChatId();
         // 保存会话ID
